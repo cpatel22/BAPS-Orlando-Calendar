@@ -7,7 +7,7 @@
   "calendar": "BAPS Orlando Calendar 2027",
   "year": 2027,
   "timezone": "America/New_York",
-  "icsUrl": "baps-orlando-2027.ics",
+  "icsUrl": "",
   "location": {
     "name": "BAPS Shri Swaminarayan Mandir",
     "address": "1325 W Oak Ridge Rd, Orlando, FL 32809"
@@ -263,8 +263,9 @@ I.addEventListener('click',function(ev){
    if(REMOTE==1&&!INAPP&&!IOSOTHER)nav(URLICS.href);else nav(webcal());
    return}
   if(INAPP||IOSOTHER){tip('To add these events to your iPhone Calendar, open this page in Safari (tap ••• or the Share button → Open in Safari), then tap Add to calendar.');return}
-  /* no hosted file: Safari blocks data: URLs, so open a blob URL instead */
-  try{nav(URL.createObjectURL(new Blob([ICS],{type:'text/calendar'})))}catch(x){tip('Could not open the calendar. Make sure baps-orlando-2027.ics is uploaded next to this page.')}
+  /* Safari blocks data: URLs in the main window, so hand iOS a blob: URL built from the page's own events */
+  try{var bu=URL.createObjectURL(new Blob([ICS],{type:'text/calendar;charset=utf-8'}));nav(bu);setTimeout(function(){URL.revokeObjectURL(bu)},60000)}
+  catch(x){tip('Could not open the calendar on this device.')}
   return}
  try{var b=new Blob([ICS],{type:'text/calendar'}),u=URL.createObjectURL(b),a=document.createElement('a');ev.preventDefault();a.href=u;a.download=DATA.calendar+'.ics';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove()},4000)}catch(x){}});
 </script></body></html>
