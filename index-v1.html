@@ -301,8 +301,12 @@ $('ics').addEventListener('click',function(ev){
     '<p>This app’s built-in browser can’t save calendar files.</p><ol><li>Tap <b>⋯</b> or the share icon</li><li>Choose <b>Open in '+(isIOS?'Safari':'Chrome')+'</b></li><li>Tap <b>Add to calendar</b> again</li></ol>');return}
   var text=buildIcs();
   if(isIOS&&!iosNonSafari){
-    // iOS Safari: navigating to a text/calendar URL opens the native “Add All to Calendar” sheet.
-    location.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(text);return;
+    // iOS Safari: WebKit blocks opening data: URLs, so download the .ics instead;
+    // tapping the downloaded file in Safari's Downloads or the Files app shows "Add All".
+    blobDownload(text);
+    setTimeout(function(){help('Almost done',
+      '<ol><li>If Safari asks, tap <b>Download</b></li><li>Tap the <b>⬇︎ Downloads</b> icon in the address bar (or open the <b>Files</b> app → <b>Downloads</b>)</li><li>Tap <b>'+esc(FILE)+'</b></li><li>Tap <b>Add All</b> and choose your calendar</li></ol>')},600);
+    return;
   }
   if(iosNonSafari){
     // Chrome/Firefox/Edge on iOS can't hand .ics to Calendar; try share sheet, else guide to Safari.
