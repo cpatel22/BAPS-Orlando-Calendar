@@ -7,6 +7,7 @@
   "calendar": "BAPS Orlando Calendar 2027",
   "year": 2027,
   "timezone": "America/New_York",
+  "icsUrl": "",
   "location": {
     "name": "BAPS Shri Swaminarayan Mandir",
     "address": "1325 W Oak Ridge Rd, Orlando, FL 32809"
@@ -97,8 +98,8 @@
     {"date": "2027-10-30", "start": "17:00", "end": "19:00", "allDay": false, "name": "Annakut Celebration", "category": "Celebration"},
     {"date": "2027-11-10", "start": null, "end": null, "allDay": true, "name": "Prabodhini Ekadashi (Chaturmas ends)", "category": "Ekadashi"},
     {"date": "2027-11-12", "start": "19:00", "end": "21:00", "allDay": false, "name": "Para Snehmilan", "category": "Celebration"},
-    {"date": "2027-11-14", "start": "16:00", "end": "19:00", "allDay": false, "name": "Shak Hatdi Utsav", "category": "Celebration"},
     {"date": "2027-11-14", "start": "13:30", "end": "15:30", "allDay": false, "name": "Punam Mahapuja", "category": "Punam Mahapuja"},
+    {"date": "2027-11-14", "start": "16:00", "end": "19:00", "allDay": false, "name": "Shak Hatdi Utsav", "category": "Celebration"},
     {"date": "2027-11-20", "start": "17:00", "end": "19:00", "allDay": false, "name": "Parayan Sabha", "category": "Parayan Sabha"},
     {"date": "2027-11-24", "start": null, "end": null, "allDay": true, "name": "Utpatti Ekadashi", "category": "Ekadashi"},
     {"date": "2027-12-04", "start": "17:00", "end": "19:00", "allDay": false, "name": "Pramukh Swami Maharaj Janma Jayanti Celebration", "category": "Celebration"},
@@ -196,7 +197,7 @@ document.getElementById('addr').textContent=addr;
 document.getElementById('dir').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(addr);
 
 /* .ics */
-function ie(v){return String(v).replace(/\\/g,'\\\\').replace(/;/g,'\;').replace(/,/g,'\\,').replace(/\n/g,'\\n')}
+function ie(v){return String(v).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n')}
 function fold(l){var o='';while(l.length>74){o+=l.slice(0,74)+'\r\n ';l=l.slice(74)}return o+l}
 function ymd(d){return d.replace(/-/g,'')}
 function nextDay(d){var x=d.split('-'),t=new Date(Date.UTC(+x[0],+x[1]-1,+x[2]+1));return t.toISOString().slice(0,10).replace(/-/g,'')}
@@ -235,5 +236,22 @@ var TC=['C','T','P','E','S','Y'],CB={};TC.forEach(function(t){CB[t]=document.get
 function filter(){var v=q.value.toLowerCase().trim(),w=fw.checked,act=v||w,any=0,cc=0;M.forEach(function(s){var c=0;s.querySelectorAll('li').forEach(function(l){var m=(!v||l.dataset.s.indexOf(v)>-1)&&(!w||l.hasAttribute('data-w')),ok=m&&(!CB[l.dataset.t]||CB[l.dataset.t].checked);l.classList.toggle('hs',!ok);G[l.dataset.i].classList.toggle('dim',!m);if(ok)c++});any+=c;if(act){s.classList.add('all');s.classList.toggle('hs',!c)}else{s.classList.remove('hs');s.classList.remove('all');s.classList.toggle('on',s.id=='m'+cur);if(s.id=='m'+cur)cc=c}});var nm=document.getElementById('none');nm.textContent=act?'No matching events':'No events in '+MN[cur-1]+' for the selected filters';nm.hidden=act?any>0:cc>0}
 q.addEventListener('input',filter);fw.addEventListener('change',filter);TC.forEach(function(t){CB[t].addEventListener('change',filter)});filter();
 var F=document.getElementById('fab');function sc(){F.style.display=window.scrollY>500?'flex':'none'}sc();window.addEventListener('scroll',sc,{passive:true});
-I.addEventListener('click',function(ev){try{var b=new Blob([ICS],{type:'text/calendar'}),u=URL.createObjectURL(b),a=document.createElement('a');ev.preventDefault();a.href=u;a.download=DATA.calendar+'.ics';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove()},4000)}catch(x){}});
+/* ---- Add to calendar ----
+   iPhone/iPad Safari: open the calendar data directly so iOS shows its "Add All" Calendar sheet
+   (a forced download only saves the file to the Files app).
+   If "icsUrl" is set and the page is on a website, iOS uses webcal:// so it works in every iOS browser.
+   Other devices: download the .ics file. */
+var UA=navigator.userAgent,IOS=/iPad|iPhone|iPod/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
+INAPP=/FBAN|FBAV|FB_IAB|Instagram|WhatsApp|Line\/|Snapchat|LinkedInApp|MicroMessenger|GSA\/|Twitter|Pinterest|; wv\)/i.test(UA),
+IOSOTHER=/CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo/.test(UA),HTTP=/^https?:$/.test(location.protocol);
+var TIP=document.createElement('p');TIP.className='ns';TIP.style.cssText='text-align:center;margin-top:8px';TIP.hidden=true;document.querySelector('.act').after(TIP);
+function tip(t){TIP.textContent=t;TIP.hidden=false}
+var URLICS=DATA.icsUrl?new URL(DATA.icsUrl,location.href):null;
+if(IOS)I.removeAttribute('download');
+I.addEventListener('click',function(ev){
+ if(IOS){ev.preventDefault();
+  if(URLICS&&HTTP){location.href='webcal://'+URLICS.host+URLICS.pathname+URLICS.search;return}
+  if(INAPP||IOSOTHER){tip('To add these events to your iPhone Calendar, open this page in Safari (tap ••• or the Share button → Open in Safari), then tap Add to calendar.');return}
+  location.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ICS);return}
+ try{var b=new Blob([ICS],{type:'text/calendar'}),u=URL.createObjectURL(b),a=document.createElement('a');ev.preventDefault();a.href=u;a.download=DATA.calendar+'.ics';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove()},4000)}catch(x){}});
 </script></body></html>
