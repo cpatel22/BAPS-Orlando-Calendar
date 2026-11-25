@@ -247,17 +247,24 @@ IOSOTHER=/CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo/.test(UA),HTTP=/^https?:$/.test(lo
 var TIP=document.createElement('p');TIP.className='ns';TIP.style.cssText='text-align:center;margin-top:8px';TIP.hidden=true;document.querySelector('.act').after(TIP);
 function tip(t){TIP.textContent=t;TIP.hidden=false}
 var URLICS=null;try{URLICS=DATA.icsUrl?new URL(DATA.icsUrl,location.href):null}catch(x){}
-/* navigate the top window (an embedded/iframed page can't hand a calendar to iOS) */
-function go(u){try{if(window.top!==window.self){var w=window.open(u,'_blank');if(w)return}}catch(x){}location.href=u}
-if(IOS){I.removeAttribute('download');if(URLICS&&HTTP)I.href=URLICS.href}
+var FRAMED=false;try{FRAMED=window.top!==window.self}catch(x){FRAMED=true}
+/* REMOTE: 0 = no usable hosted .ics, 1 = hosted as text/calendar, 2 = hosted but server sends the wrong type */
+var REMOTE=0;
+if(IOS){I.removeAttribute('download');
+ if(URLICS&&HTTP&&window.fetch)fetch(URLICS.href,{cache:'no-store'}).then(function(r){if(!r.ok)return;var ct=(r.headers.get('content-type')||'').toLowerCase();return r.text().then(function(t){if(t.indexOf('BEGIN:VCALENDAR')<0)return;REMOTE=ct.indexOf('calendar')>-1?1:2;I.href=URLICS.href})}).catch(function(){})}
+function webcal(){return'webcal://'+URLICS.host+URLICS.pathname+URLICS.search}
+/* iOS only hands calendars to the Calendar app from the top window */
+function nav(u){if(FRAMED){try{window.top.location.href=u;return}catch(x){}tip('Open this page directly in Safari (not inside another page or app), then tap Add to calendar.');return}location.href=u}
 I.addEventListener('click',function(ev){
  if(IOS){ev.preventDefault();
-  if(URLICS&&HTTP){
-   /* Safari: open the real https .ics -> iOS "Add All" sheet (keeps alerts).
-      Chrome/Firefox/Edge/in-app browsers on iOS can't open .ics themselves -> webcal:// hands it to the Calendar app. */
-   if(INAPP||IOSOTHER)go('webcal://'+URLICS.host+URLICS.pathname+URLICS.search);else go(URLICS.href);
+  if(REMOTE){
+   /* Safari + correct type: open the https .ics -> "Add All" sheet (keeps alerts).
+      Other iOS browsers, in-app browsers, or wrong server type: webcal:// -> Calendar app */
+   if(REMOTE==1&&!INAPP&&!IOSOTHER)nav(URLICS.href);else nav(webcal());
    return}
   if(INAPP||IOSOTHER){tip('To add these events to your iPhone Calendar, open this page in Safari (tap ••• or the Share button → Open in Safari), then tap Add to calendar.');return}
-  go('data:text/calendar;charset=utf-8,'+encodeURIComponent(ICS));return}
+  /* no hosted file: Safari blocks data: URLs, so open a blob URL instead */
+  try{nav(URL.createObjectURL(new Blob([ICS],{type:'text/calendar'})))}catch(x){tip('Could not open the calendar. Make sure baps-orlando-2027.ics is uploaded next to this page.')}
+  return}
  try{var b=new Blob([ICS],{type:'text/calendar'}),u=URL.createObjectURL(b),a=document.createElement('a');ev.preventDefault();a.href=u;a.download=DATA.calendar+'.ics';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove()},4000)}catch(x){}});
 </script></body></html>
