@@ -7,7 +7,7 @@
   "calendar": "BAPS Orlando Calendar 2027",
   "year": 2027,
   "timezone": "America/New_York",
-  "icsUrl": "",
+  "icsUrl": "baps-orlando-2027.ics",
   "location": {
     "name": "BAPS Shri Swaminarayan Mandir",
     "address": "1325 W Oak Ridge Rd, Orlando, FL 32809"
@@ -204,7 +204,7 @@ function nextDay(d){var x=d.split('-'),t=new Date(Date.UTC(+x[0],+x[1]-1,+x[2]+1
 function hm(t){return t.replace(':','')+'00'}
 function add2h(t){var h=+t.slice(0,2)+2;return(h>23?'23:59':(h<10?'0':'')+h+t.slice(2))}
 var now=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',where=ie((loc.name?loc.name+', ':'')+addr),tz=DATA.timezone||'America/New_York';
-var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//BAPS Orlando//Calendar '+YR+'//EN','CALSCALE:GREGORIAN','X-WR-CALNAME:'+ie(DATA.calendar),
+var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//BAPS Orlando//Calendar '+YR+'//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:'+ie(DATA.calendar),
 'BEGIN:VTIMEZONE','TZID:America/New_York','BEGIN:DAYLIGHT','TZOFFSETFROM:-0500','TZOFFSETTO:-0400','TZNAME:EDT','DTSTART:19700308T020000','RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU','END:DAYLIGHT',
 'BEGIN:STANDARD','TZOFFSETFROM:-0400','TZOFFSETTO:-0500','TZNAME:EST','DTSTART:19701101T020000','RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU','END:STANDARD','END:VTIMEZONE'];
 ics.forEach(function(e,i){var id=ie(e.uid||(e.date+'-'+(e.start||'allday')+'-'+e.name.toLowerCase().replace(/[^a-z0-9]+/g,'-')));
@@ -246,12 +246,18 @@ INAPP=/FBAN|FBAV|FB_IAB|Instagram|WhatsApp|Line\/|Snapchat|LinkedInApp|MicroMess
 IOSOTHER=/CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo/.test(UA),HTTP=/^https?:$/.test(location.protocol);
 var TIP=document.createElement('p');TIP.className='ns';TIP.style.cssText='text-align:center;margin-top:8px';TIP.hidden=true;document.querySelector('.act').after(TIP);
 function tip(t){TIP.textContent=t;TIP.hidden=false}
-var URLICS=DATA.icsUrl?new URL(DATA.icsUrl,location.href):null;
-if(IOS)I.removeAttribute('download');
+var URLICS=null;try{URLICS=DATA.icsUrl?new URL(DATA.icsUrl,location.href):null}catch(x){}
+/* navigate the top window (an embedded/iframed page can't hand a calendar to iOS) */
+function go(u){try{if(window.top!==window.self){var w=window.open(u,'_blank');if(w)return}}catch(x){}location.href=u}
+if(IOS){I.removeAttribute('download');if(URLICS&&HTTP)I.href=URLICS.href}
 I.addEventListener('click',function(ev){
  if(IOS){ev.preventDefault();
-  if(URLICS&&HTTP){location.href='webcal://'+URLICS.host+URLICS.pathname+URLICS.search;return}
+  if(URLICS&&HTTP){
+   /* Safari: open the real https .ics -> iOS "Add All" sheet (keeps alerts).
+      Chrome/Firefox/Edge/in-app browsers on iOS can't open .ics themselves -> webcal:// hands it to the Calendar app. */
+   if(INAPP||IOSOTHER)go('webcal://'+URLICS.host+URLICS.pathname+URLICS.search);else go(URLICS.href);
+   return}
   if(INAPP||IOSOTHER){tip('To add these events to your iPhone Calendar, open this page in Safari (tap ••• or the Share button → Open in Safari), then tap Add to calendar.');return}
-  location.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ICS);return}
+  go('data:text/calendar;charset=utf-8,'+encodeURIComponent(ICS));return}
  try{var b=new Blob([ICS],{type:'text/calendar'}),u=URL.createObjectURL(b),a=document.createElement('a');ev.preventDefault();a.href=u;a.download=DATA.calendar+'.ics';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove()},4000)}catch(x){}});
 </script></body></html>
