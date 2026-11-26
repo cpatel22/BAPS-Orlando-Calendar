@@ -1,4 +1,4 @@
-# BAPS Orlando Calendar — Next.js
+# BAPS Orlando Calendar — Next.js 
 
 The three original calendar designs, unchanged, served by one Next.js app with
 one shared event file and one calendar feed.
