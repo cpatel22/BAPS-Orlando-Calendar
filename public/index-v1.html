@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>BAPS Orlando Calendar 2027</title>
+<!-- Events are in events.js (shared by every calendar page). Edit that file, not this one. --><script src="events.js"></script><script src="calendar-core.js"></script>
+<style>:root{--ink:#1b1713;--card:#fffdf7;--s:26%;--l:88%;--mut:#6d6258}@media (prefers-color-scheme:dark){:root{--ink:#f1ebe0;--card:#211d19;--s:14%;--l:12%;--mut:#a89c8e}:root:has(#tm:checked){--ink:#1b1713;--card:#fffdf7;--s:26%;--l:88%;--mut:#6d6258}.logo{filter:invert(1) hue-rotate(180deg)}:root:has(#tm:checked) .logo{filter:none}.tg .sun{background:transparent;color:inherit;opacity:.5}.tg .mo{background:var(--ink);color:var(--card);opacity:1}:root:has(#tm:checked) .tg .sun{background:var(--ink);color:var(--card);opacity:1}:root:has(#tm:checked) .tg .mo{background:transparent;color:inherit;opacity:.5}}@media (prefers-color-scheme:light),(prefers-color-scheme:no-preference){:root:has(#tm:checked){--ink:#f1ebe0;--card:#211d19;--s:14%;--l:12%;--mut:#a89c8e}:root:has(#tm:checked) .logo{filter:invert(1) hue-rotate(180deg)}:root:has(#tm:checked) .tg .sun{background:transparent;color:inherit;opacity:.5}:root:has(#tm:checked) .tg .mo{background:var(--ink);color:var(--card);opacity:1}}html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:system-ui,-apple-system,sans-serif;background:hsl(35 var(--s) var(--l))}
+.s{min-height:100vh;min-height:100svh;box-sizing:border-box;padding:calc(env(safe-area-inset-top,0px) + 48px) 16px 130px;background:hsl(var(--h) var(--s) var(--l));scroll-snap-align:start;max-width:560px;margin:0 auto;position:relative}
+section.s[id^=m]{min-height:0;padding-bottom:20px}
+.s.end{min-height:0;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 110px)}
+.pg{position:fixed;top:calc(env(safe-area-inset-top,0px) + 4px);left:12px;right:12px;display:flex;gap:4px;z-index:9;max-width:536px;margin:0 auto}
+.pg a{flex:1;height:22px;padding:8px 0;box-sizing:border-box;background:var(--ink);background-clip:content-box;opacity:.22;border-radius:99px}.pg a.on{opacity:1}
+.big{font:900 clamp(90px,30vw,168px)/.85 'Arial Black',Impact,system-ui;color:var(--card);-webkit-text-stroke:3px var(--ink);text-shadow:6px 6px 0 var(--ink);letter-spacing:-2px;margin:8px 0 10px;transform:rotate(-2deg);transform-origin:left}
+.yr{font-size:clamp(90px,32vw,180px)}
+.tag{display:inline-block;border:3px solid var(--ink);border-radius:99px;padding:5px 12px;font:800 12px system-ui;background:var(--card);box-shadow:3px 3px 0 var(--ink);margin:0 6px 14px 0}
+.ev{display:flex;gap:12px;align-items:center;background:var(--card);border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);padding:10px 12px;margin:0 6px 16px;color:var(--ink);text-decoration:none}
+.ev:nth-child(odd){transform:rotate(-.7deg)}.ev:nth-child(even){transform:rotate(.7deg)}
+.db{flex:0 0 58px;height:58px;border-radius:14px;border:3px solid var(--ink);background:var(--c);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font:900 26px/1 'Arial Black',Impact,system-ui}.db small{font:800 9px system-ui;letter-spacing:.8px;text-transform:uppercase;margin-top:3px}
+.en{font:800 16px/1.2 system-ui}.et{font:600 12px system-ui;color:var(--mut);margin-top:4px}
+.btn{display:inline-block;border:3px solid var(--ink);border-radius:14px;padding:11px 16px;font:800 14px system-ui;background:var(--card);color:var(--ink);text-decoration:none;box-shadow:4px 4px 0 var(--ink);margin:0 8px 12px 0;cursor:pointer}.btn.go{background:var(--ink);color:var(--card)}
+.tg{position:absolute;top:calc(env(safe-area-inset-top,0px) + 38px);right:16px;display:flex;border:3px solid var(--ink);border-radius:99px;background:var(--card);box-shadow:3px 3px 0 var(--ink);padding:2px;cursor:pointer;font-size:15px}
+.tg span{width:30px;height:26px;line-height:26px;text-align:center;border-radius:99px}.tg .sun{background:var(--ink);color:var(--card);opacity:1}
+.logo{height:64px;display:block;margin:0 0 6px}
+h1{font:900 20px/1.15 system-ui;margin:6px 0 4px}.sub{font:600 13px system-ui;color:var(--mut);margin:0 0 14px}
+#q{width:100%;box-sizing:border-box;font:600 16px system-ui;padding:12px 16px;border:3px solid var(--ink);border-radius:14px;background:var(--card);color:var(--ink);box-shadow:4px 4px 0 var(--ink);outline:0;margin:6px 0 4px}
+.ns{font:600 12px system-ui;color:var(--mut)}
+h3{font:900 13px system-ui;letter-spacing:1.4px;text-transform:uppercase;margin:18px 0 12px}
+.swipe{font:800 14px system-ui;margin-top:20px;animation:b 1.4s infinite}@keyframes b{50%{transform:translateY(6px)}}
+.fb{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);left:50%;transform:translateX(-50%);display:flex;gap:8px;padding:8px 10px;background:var(--card);border:3px solid var(--ink);border-radius:99px;box-shadow:4px 4px 0 var(--ink);z-index:9}
+.fb label{width:40px;height:40px;border-radius:50%;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:19px;background:var(--c);cursor:pointer;opacity:.3}
+[hidden],.hs{display:none!important}.foot{font:800 15px system-ui;text-align:center;margin-top:30px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:20;padding:16px}
+
+.mdl{background:var(--card);color:var(--ink);border:3px solid var(--ink);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:18px;max-width:480px;width:100%;margin-bottom:env(safe-area-inset-bottom,0px);font:600 14px/1.45 system-ui}
+.mdl h2{font:900 18px system-ui;margin:0 0 8px}.mdl ol{padding-left:20px;margin:8px 0 14px}
+</style></head><body><input type="checkbox" id="tm" hidden><span id="filters"></span><nav class="pg" id="pg"></nav><main class="st" id="st"><section class="s" id="top" style="--h:35"><label class="tg" for="tm" aria-label="Switch between day and night mode"><span class="sun">☀️</span><span class="mo">🌙</span></label><img class="logo" alt="BAPS logo" src="images/baps-logo.png"><div class="big yr" id="yr"></div><h1 id="title"></h1><p class="sub" id="addr"></p><a class="btn" id="dir" target="_blank" rel="noopener">Directions</a><a class="btn go" id="ics" href="#" role="button">Add to calendar</a><a class="btn" id="sub" hidden>Subscribe</a><input id="q" type="search" placeholder="Search events" autocomplete="off"><noscript><p class="ns">This calendar needs JavaScript. Please open it in Safari or Chrome.</p></noscript><h3>Next up</h3><div id="upl"></div><div class="swipe">swipe up ↓</div></section></main><nav class="fb" id="fb"></nav>
+<div class="ov" id="help" hidden><div class="mdl" role="dialog" aria-modal="true" aria-labelledby="hT"><h2 id="hT"></h2><div id="hB"></div><button class="btn go" id="hCopy" type="button">Copy page link</button><button class="btn" id="hX" type="button">Close</button></div></div>
+<script>
+if(!window.BAPS){document.body.insertAdjacentHTML('afterbegin','<p style="padding:16px;margin:0;background:#fde8e8;color:#8a1c1c;font:600 15px system-ui">Could not load the calendar. Keep events.js and calendar-core.js in the same folder as this page, and check it for a typo (missing quote or comma).</p>');throw new Error('events.js / calendar-core.js not loaded')}
+/* map the shared events.js format to this page's fields (look of each type lives here) */
+var V1TYPES={'Celebration':['celebration','🎉','#b4533a'],'Tithi Sabha':['tithi','📿','#5d5f93'],'Punam Mahapuja':['punam','🌕','#a0506f'],'Ekadashi':['ekadashi','🌿','#5b8559'],'Parasabha':['parasabha','🪷','#4a7399'],'Parayan Sabha':['parayan','📖','#b88a2e']};
+function toV1(S){var types={};(S.categories||Object.keys(V1TYPES)).forEach(function(c){var t=V1TYPES[c]||[c.toLowerCase().replace(/[^a-z0-9]+/g,'-'),'•','#777'];V1TYPES[c]=t;types[t[0]]={label:c,emoji:t[1],color:t[2]}});
+ return{calendar:{name:S.calendar,year:S.year,timezone:S.timezone,location:S.location,subscribeUrl:(S.showSubscribe&&S.icsUrl)||null,monthHues:[30,95,25,205,40,150,32,215,22,80,45,190]},types:types,
+  events:BAPS.events.map(function(e){var o={};for(var k in e)o[k]=e[k];o.type=V1TYPES[e.type]?V1TYPES[e.type][0]:e.type;return o})}}
+(function(){
+var D=toV1(BAPS.data),
+    C=D.calendar,T=D.types,TK=Object.keys(T),
+    MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    MONL=['january','february','march','april','may','june','july','august','september','october','november','december'],
+    WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    $=function(id){return document.getElementById(id)};
+
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function fmt(hm){var p=hm.split(':'),h=+p[0],m=p[1],ap=h<12?'AM':'PM';h=h%12||12;return h+(m==='00'?'':':'+m)+' '+ap}
+function pad(n){return(n<10?'0':'')+n}
+function addH(hm,n){var p=hm.split(':');return pad(Math.min(23,+p[0]+n))+':'+p[1]}
+
+/* ---- normalise + sort (all-day first on a given day, then by start time) ---- */
+var E=D.events.map(function(e,i){
+  var p=e.date.split('-'),y=+p[0],m=+p[1],d=+p[2];
+  if(!T[e.type])console.warn('Unknown type "'+e.type+'" for',e);
+  return{y:y,m:m,d:d,date:e.date,name:e.name,type:e.type,start:e.start||'',end:e.start?(e.end||addH(e.start,2)):'',
+    wd:WD[new Date(y,m-1,d).getDay()],i:i};
+}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:(a.start||'00:00')<(b.start||'00:00')?-1:(a.start||'00:00')>(b.start||'00:00')?1:a.i-b.i});
+
+/* ---- hero ---- */
+$('yr').textContent=C.year;$('title').textContent=C.location.name;$('addr').textContent=C.location.address;
+$('dir').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(C.location.address);
+document.title=C.name;
+
+/* ---- type filters (checkbox + generated CSS) ---- */
+var css='',fi='',fb='';
+TK.forEach(function(k){var id='f_'+k;
+  fi+='<input type="checkbox" id="'+id+'" checked hidden>';
+  fb+='<label for="'+id+'" title="'+esc(T[k].label)+'" style="--c:'+T[k].color+'">'+T[k].emoji+'</label>';
+  css+='#'+id+':checked~.fb label[for="'+id+'"]{opacity:1}';
+});
+$('filters').outerHTML=fi;var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+$('fb').innerHTML=fb;
+
+/* ---- month pages ---- */
+var hues=C.monthHues||[30,95,25,205,40,150,32,215,22,80,45,190],html='',pg='';
+for(var m=1;m<=12;m++){
+  var list=E.filter(function(e){return e.m===m});
+  pg+='<a href="#m'+m+'" aria-label="'+MONL[m-1]+'"></a>';
+  html+='<section class="s" id="m'+m+'" style="--h:'+hues[m-1]+'"><span class="tag">'+pad(m)+' / 12</span><span class="tag cnt" data-n="'+list.length+'">'+list.length+' event'+(list.length===1?'':'s')+'</span><div class="big">'+MON[m-1].toUpperCase()+'</div>';
+  list.forEach(function(e){var t=T[e.type]||{label:e.type,emoji:'•',color:'#777'};
+    e.search=(e.name+' '+t.label+' '+MONL[m-1]+' '+e.wd+' '+(e.start?fmt(e.start):'')).toLowerCase();
+    html+='<div class="ev" data-t="'+esc(e.type)+'" data-s="'+esc(e.search)+'" style="--c:'+t.color+'"><div class="db">'+e.d+'<small>'+e.wd+'</small></div><div><div class="en">'+esc(e.name)+'</div><div class="et">'+(e.start?fmt(e.start)+' · ':'')+t.emoji+' '+esc(t.label)+'</div></div></div>';
+  });
+  html+='</section>';
+}
+html+='<section class="s end" style="--h:35"><p id="none" hidden class="foot">No matching events</p><p class="foot">Dates are subject to change ✌️</p></section>';
+$('st').insertAdjacentHTML('beforeend',html);$('pg').innerHTML=pg;
+
+/* ---- next up ---- */
+var now=new Date(),up=E.filter(function(e){var h=(e.start||'23:59').split(':');return new Date(e.y,e.m-1,e.d,+h[0],+h[1])>=now}).slice(0,3);
+$('upl').innerHTML=up.length?up.map(function(e){var t=T[e.type]||{color:'#777'};return '<a class="ev" href="#m'+e.m+'" style="--c:'+t.color+'"><div class="db">'+e.d+'<small>'+MON[e.m-1]+'</small></div><div><div class="en">'+esc(e.name)+'</div><div class="et">'+e.wd+(e.start?' · '+fmt(e.start):'')+'</div></div></a>'}).join(''):'No more events in '+C.year;
+
+/* ---- search ---- */
+var q=$('q');
+function apply(){
+  var v=q.value.toLowerCase().trim(),on={},filtered=false,any=0;
+  TK.forEach(function(k){on[k]=$('f_'+k).checked;if(!on[k])filtered=true});
+  document.querySelectorAll('section.s[id^=m]').forEach(function(s){var c=0,tot=0;
+    s.querySelectorAll('.ev').forEach(function(l){tot++;
+      var ok=on[l.dataset.t]!==false&&(!v||l.dataset.s.indexOf(v)>-1);
+      l.classList.toggle('hs',!ok);if(ok)c++});
+    var tag=s.querySelector('.cnt');
+    tag.textContent=(c<tot?c+' of '+tot:tot)+' event'+(tot===1?'':'s');
+    s.classList.toggle('hs',!c&&(!!v||filtered)); // hide months with nothing left to show
+    any+=c});
+  $('none').hidden=!!any;
+  document.querySelectorAll('.pg a').forEach(function(a,i){a.classList.toggle('hs',$('m'+(i+1)).classList.contains('hs'))});
+}
+q.addEventListener('input',apply);
+TK.forEach(function(k){$('f_'+k).addEventListener('change',apply)});
+
+/* ---- progress bar ---- */
+if(window.IntersectionObserver){var L=document.querySelectorAll('.pg a'),o=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){var k=+e.target.id.slice(1)-1;L.forEach(function(a,i){a.classList.toggle('on',i<=k)})}})},{threshold:.3});
+  document.querySelectorAll('section.s[id^=m]').forEach(function(s){o.observe(s)})}
+
+/* ================= .ics — built by the shared calendar-core.js ================= */
+function buildIcs(){return BAPS.buildIcs()}
+
+/* ================= download that works on iOS + Android ================= */
+var ua=navigator.userAgent,
+    isIOS=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
+    isAndroid=/Android/i.test(ua),
+    inApp=/FBAN|FBAV|FB_IAB|Instagram|WhatsApp|Line\/|Snapchat|Twitter|LinkedInApp|MicroMessenger|GSA\/|; wv\)/i.test(ua),
+    iosNonSafari=isIOS&&/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua),
+    FILE=BAPS.icsFileName;
+
+function help(title,body){$('hT').textContent=title;$('hB').innerHTML=body;$('help').hidden=false}
+$('hX').onclick=function(){$('help').hidden=true};
+$('help').onclick=function(e){if(e.target===this)this.hidden=true};
+$('hCopy').onclick=function(){var b=this,u=location.href.split('#')[0];
+  (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.textContent='Copied ✓'},function(){prompt('Copy this link:',u)})};
+
+/* Add to calendar: one shared action for every page — BAPS.addToCalendar() in calendar-core.js handles the #ics button. */
+/* optional live subscription (needs a hosted .ics) */
+if(C.subscribeUrl){var s=$('sub');s.hidden=false;
+  s.href=isAndroid?'https://calendar.google.com/calendar/render?cid='+encodeURIComponent(C.subscribeUrl.replace(/^https?:/,'webcal:')):C.subscribeUrl.replace(/^https?:/,'webcal:')}
+})();
+</script></body></html>

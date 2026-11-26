@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>BAPS Orlando Calendar 2027</title>
+<!-- Events are in events.js (shared by every calendar page). Edit that file, not this one. --><script src="events.js"></script><script src="calendar-core.js"></script>
+<style>:root{--bg:#0b1016;--ink:#e8ecef;--mut:#8b97a3;--line:rgba(255,255,255,.11);--moon:#f1e7cf;--sel:rgba(255,255,255,.08);--card:#131a22}@media (prefers-color-scheme:light){:root{--bg:#f4f0e7;--ink:#1b2127;--mut:#6a7178;--line:rgba(0,0,0,.13);--moon:#fffdf6;--sel:rgba(0,0,0,.07);--card:#fffaf0}:root:has(#tm:checked){--bg:#0b1016;--ink:#e8ecef;--mut:#8b97a3;--line:rgba(255,255,255,.11);--moon:#f1e7cf;--sel:rgba(255,255,255,.08);--card:#131a22}.tg .sun{background:var(--card);opacity:1}.tg .mm{background:transparent;opacity:.45}:root:has(#tm:checked) .tg .sun{background:transparent;opacity:.45}:root:has(#tm:checked) .tg .mm{background:var(--card);opacity:1}}@media (prefers-color-scheme:dark),(prefers-color-scheme:no-preference){:root:has(#tm:checked){--bg:#f4f0e7;--ink:#1b2127;--mut:#6a7178;--line:rgba(0,0,0,.13);--moon:#fffdf6;--sel:rgba(0,0,0,.07);--card:#fffaf0}.tg .sun{background:transparent;opacity:.45}.tg .mm{background:var(--card);opacity:1}:root:has(#tm:checked) .tg .sun{background:var(--card);opacity:1}:root:has(#tm:checked) .tg .mm{background:transparent;opacity:.45}}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:-apple-system,'SF Pro Text',system-ui,sans-serif;background:radial-gradient(circle at 50% 24%,rgba(125,145,175,.2),transparent 62%),var(--bg);padding:calc(env(safe-area-inset-top,0px) + 12px) 16px calc(env(safe-area-inset-bottom,0px) + 40px)}
+.w{max-width:520px;margin:0 auto}
+.top{display:flex;align-items:center;gap:10px}.top img{height:38px;filter:var(--lg,none)}.top b{flex:1;font-size:14px;letter-spacing:.3px}.top small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.tg{display:flex;border:1px solid var(--line);border-radius:99px;padding:2px;cursor:pointer;font-size:14px}.tg span{width:28px;height:24px;line-height:24px;text-align:center;border-radius:99px}
+.wh{position:relative;margin:6px auto 0;max-width:430px}svg{display:block;width:100%;height:auto;overflow:visible}
+.ctr{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:31%;text-align:center;pointer-events:none}
+.ctr .l{font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mut)}.ctr .n{font:700 14px/1.2 Georgia,serif;margin:4px 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.ctr .d{font-size:10.5px;color:var(--mut);line-height:1.3}
+.mw{fill:transparent;cursor:pointer}.mw.on{fill:var(--sel)}.ml{font:700 9.5px system-ui;fill:var(--mut);text-anchor:middle;dominant-baseline:middle;letter-spacing:.8px;cursor:pointer}.ml.on{fill:var(--ink)}
+.ring{fill:none;stroke:var(--line);stroke-width:1}.mt{stroke:var(--line);stroke-width:1}
+.ev{cursor:pointer}.dim{opacity:.12}
+#nd{transition:transform .8s cubic-bezier(.3,.9,.3,1);transform-origin:200px 200px}
+.lg{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0 2px}
+.lg label{display:flex;align-items:center;gap:6px;font:600 12px system-ui;padding:6px 11px;border-radius:99px;border:1px solid var(--line);cursor:pointer;opacity:.4;user-select:none;-webkit-user-select:none}
+.lg svg{width:14px;height:14px}
+.act{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0 4px}
+.btn{font:700 13px system-ui;text-decoration:none;padding:11px 18px;border-radius:99px;border:1.5px solid var(--ink);color:var(--ink)}.btn.go{background:var(--ink);color:var(--bg)}
+.ad{text-align:center;font-size:12px;color:var(--mut);margin-top:6px}
+#q{width:100%;box-sizing:border-box;font-size:16px;padding:11px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);outline:0;margin-top:14px}
+.ns{font-size:11px;color:var(--mut);margin:6px 8px 0}
+.mc{display:flex;gap:6px;overflow-x:auto;padding:14px 0 6px;scrollbar-width:none}.mc::-webkit-scrollbar{display:none}
+.mc a{flex:0 0 auto;font:700 12px system-ui;color:var(--mut);text-decoration:none;padding:6px 12px;border-radius:99px;border:1px solid var(--line)}.mc a.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.mo{margin-top:14px;scroll-margin-top:12px}.js .mo{display:none}.js .mo.on,.js .mo.all{display:block}
+.mo h2{margin:0 0 6px;font:400 26px Georgia,serif;display:flex;justify-content:space-between;align-items:center}.up{font:600 12px system-ui;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:6px 12px}.fab{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:20px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:9}
+li{list-style:none;display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}ul{margin:0;padding:0}
+li .gl{flex:0 0 22px;display:flex;justify-content:center}li svg{width:20px;height:20px}
+li b{display:block;font-size:15px}li small{font-size:12.5px;color:var(--mut)}li.hi{background:var(--sel)}
+.lg label.ww{border-color:#d9729d}#fw:checked~.w .lg label.ww{opacity:1;background:#d9729d;color:#fff}#fw:checked~.w g.ev:not([data-w]){opacity:.12}#fw:checked~.w li:not([data-w]){display:none}#fw:checked~.w section.mo:not(:has(li[data-w])){display:none}.hs{display:none!important}.fin{text-align:center;color:var(--mut);font-size:13px;margin:30px 0 0}#fC:not(:checked)~.w g.ev[data-t=C],#fC:not(:checked)~.w li[data-t=C]{display:none}#fC:checked~.w .lg label[for=fC]{opacity:1;border-color:#d1704f}#fT:not(:checked)~.w g.ev[data-t=T],#fT:not(:checked)~.w li[data-t=T]{display:none}#fT:checked~.w .lg label[for=fT]{opacity:1;border-color:#8e91cf}#fP:not(:checked)~.w g.ev[data-t=P],#fP:not(:checked)~.w li[data-t=P]{display:none}#fP:checked~.w .lg label[for=fP]{opacity:1;border-color:#c06f93}#fE:not(:checked)~.w g.ev[data-t=E],#fE:not(:checked)~.w li[data-t=E]{display:none}#fE:checked~.w .lg label[for=fE]{opacity:1;border-color:#78ad78}#fS:not(:checked)~.w g.ev[data-t=S],#fS:not(:checked)~.w li[data-t=S]{display:none}#fS:checked~.w .lg label[for=fS]{opacity:1;border-color:#6a9bc4}#fY:not(:checked)~.w g.ev[data-t=Y],#fY:not(:checked)~.w li[data-t=Y]{display:none}#fY:checked~.w .lg label[for=fY]{opacity:1;border-color:#d0a849}</style></head><body id="top"><input type="checkbox" id="tm" hidden><input type="checkbox" id="fw" hidden><input type="checkbox" id="fC" checked hidden><input type="checkbox" id="fT" checked hidden><input type="checkbox" id="fP" checked hidden><input type="checkbox" id="fE" checked hidden><input type="checkbox" id="fS" checked hidden><input type="checkbox" id="fY" checked hidden><div class="w"><div class="top"><img src="images/baps-logo.png" alt="BAPS logo" style="background:#fff;border-radius:10px;padding:3px"><b>BAPS Shri Swaminarayan Mandir<small>Orlando · Year wheel 2027</small></b><label class="tg" for="tm" aria-label="Switch between day and night mode"><span class="sun">☀️</span><span class="mm">🌙</span></label></div><div class="wh"><svg id="wheel" viewBox="0 0 400 400" role="img" aria-label="2027 year wheel"></svg><div class="ctr"><div class="l" id="cl">Next up</div><div class="n" id="cn"></div><div class="d" id="cd"></div></div></div><div class="lg"><label for="fC"><svg viewBox="0 0 20 20" style="--c:#d1704f"><circle cx="10" cy="10" r="6.5" fill="var(--c)"/></svg>Celebration</label><label for="fT"><svg viewBox="0 0 20 20" style="--c:#8e91cf"><circle cx="10" cy="10" r="5" fill="none" stroke="var(--c)" stroke-width="2.5"/></svg>Tithi Sabha</label><label for="fP"><svg viewBox="0 0 20 20" style="--c:#c06f93"><circle cx="10" cy="10" r="6.5" fill="var(--moon)" stroke="var(--c)" stroke-width="2"/></svg>Punam Mahapuja</label><label for="fE"><svg viewBox="0 0 20 20" style="--c:#78ad78"><circle cx="10" cy="10" r="5.5" fill="none" stroke="var(--c)" stroke-width="1.6"/><path d="M10,4.5 A5.5 5.5 0 0 0 10,15.5Z" fill="var(--c)"/></svg>Ekadashi</label><label for="fS"><svg viewBox="0 0 20 20" style="--c:#6a9bc4"><rect x="5.5" y="5.5" width="9" height="9" rx="2" fill="var(--c)"/></svg>Parasabha</label><label for="fY"><svg viewBox="0 0 20 20" style="--c:#d0a849"><rect x="6" y="6" width="8" height="8" fill="var(--c)" transform="rotate(45 10 10)"/></svg>Parayan Sabha</label><label for="fw" class="ww"><svg viewBox="0 0 20 20" style="--c:#d9729d"><circle cx="10" cy="10" r="6.5" fill="var(--c)"/></svg>Women's Wing</label></div><div class="act"><a class="btn go" id="ics" href="#">Add to calendar</a><a class="btn" id="dir" href="#">Directions</a></div><div class="ad" id="addr"></div><input id="q" type="search" placeholder="Search events"><noscript><p class="ns">Turn on JavaScript to see the events.</p></noscript><nav class="mc" id="mc"></nav><main id="main"></main><p id="none" hidden class="fin">No matching events</p><p class="fin">Dates are subject to change</p></div><a class="fab" id="fab" href="#top" aria-label="Back to top">↑</a>
+<script>
+if(!window.BAPS){document.body.insertAdjacentHTML('afterbegin','<p style="padding:16px;margin:0;background:#fde8e8;color:#8a1c1c;font:600 15px system-ui">Could not load the calendar. Keep events.js and calendar-core.js in the same folder as this page, and check it for a typo (missing quote or comma).</p>');throw new Error('events.js / calendar-core.js not loaded')}
+/* map the shared events.js format to this page's fields */
+var DATA=(function(S){var o={};for(var k in S)o[k]=S[k];o.events=BAPS.events.map(function(e){return{date:e.date,name:e.name,category:e.type,start:e.start||null,end:e.end||null,allDay:e.allDay,womensWing:e.womensWing}});return o})(BAPS.data);
+/* category -> [code, color, ring radius] */
+var TY={'Celebration':['C','#d1704f',150],'Tithi Sabha':['T','#8e91cf',136],'Punam Mahapuja':['P','#c06f93',122],'Ekadashi':['E','#78ad78',108],'Parasabha':['S','#6a9bc4',94],'Parayan Sabha':['Y','#d0a849',80]};
+var WWC='#d9729d',MN=['January','February','March','April','May','June','July','August','September','October','November','December'],DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var YR=+DATA.year,YD=((YR%4==0&&YR%100!=0)||YR%400==0)?366:365;
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;')}
+function r3(n){return Math.round(n*1000)/1000}
+function pt(a,r){a=a*Math.PI/180;return[r3(200+r*Math.sin(a)),r3(200-r*Math.cos(a))]}
+function doy(m,d){return Math.round((Date.UTC(YR,m-1,d)-Date.UTC(YR,0,1))/864e5)}
+function ang(d){return d/YD*360}
+function glyph(t,x,y){var p='cx="'+x+'" cy="'+y+'" ';switch(t){
+case'T':return'<circle '+p+'r="5" fill="none" stroke="var(--c)" stroke-width="2.5"/>';
+case'P':return'<circle '+p+'r="6.5" fill="var(--moon)" stroke="var(--c)" stroke-width="2"/>';
+case'E':return'<circle '+p+'r="5.5" fill="none" stroke="var(--c)" stroke-width="1.6"/><path d="M'+x+','+r3(y-5.5)+' A5.5 5.5 0 0 0 '+x+','+r3(y+5.5)+'Z" fill="var(--c)"/>';
+case'S':return'<rect x="'+r3(x-4.5)+'" y="'+r3(y-4.5)+'" width="9" height="9" rx="2" fill="var(--c)"/>';
+case'Y':return'<rect x="'+r3(x-4)+'" y="'+r3(y-4)+'" width="8" height="8" fill="var(--c)" transform="rotate(45 '+x+' '+y+')"/>';
+default:return'<circle '+p+'r="6.5" fill="var(--c)"/>'}}
+function tlab(t){if(!t)return'';var h=+t.slice(0,2),m=t.slice(3,5),ap=h<12?'AM':'PM';h=h%12||12;return h+(m!='00'?':'+m:'')+' '+ap}
+
+/* sort by date, then start (all-day first) */
+var EV=DATA.events.slice().sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:(a.start||'').localeCompare(b.start||'')});
+
+/* wheel */
+var mStart=[];for(var m=1;m<=12;m++)mStart.push(doy(m,1));mStart.push(YD);
+var s='';[150,136,122,108,94,80,70].forEach(function(r){s+='<circle class="ring" cx="200" cy="200" r="'+r+'"/>'});
+for(m=0;m<12;m++){var a=pt(ang(mStart[m]),70),b=pt(ang(mStart[m]),172);s+='<line class="mt" x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'"/>'}
+for(m=0;m<12;m++){var a0=ang(mStart[m]),a1=ang(mStart[m+1]),o0=pt(a0,168),o1=pt(a1,168),i0=pt(a0,70),i1=pt(a1,70);
+s+='<a href="#m'+(m+1)+'"><path class="mw" data-m="'+(m+1)+'" d="M'+o0+' A168 168 0 0 1 '+o1+' L'+i1+' A70 70 0 0 0 '+i0+' Z"/></a>'}
+for(m=0;m<12;m++){var lp=pt(ang((mStart[m]+mStart[m+1])/2),184);s+='<a href="#m'+(m+1)+'"><text class="ml" data-m="'+(m+1)+'" x="'+lp[0]+'" y="'+lp[1]+'">'+MN[m].slice(0,3).toUpperCase()+'</text></a>'}
+
+var secs={},seen={};
+EV.forEach(function(e,i){
+  var k=TY[e.category]||TY['Celebration'],t=k[0],col=e.womensWing?WWC:k[1],p=e.date.split('-'),mo=+p[1],dd=+p[2];
+  var key=e.date+'|'+k[2],n=seen[key]||0;seen[key]=n+1;
+  var c=pt(ang(doy(mo,dd))+3.2*n,k[2]);
+  s+='<g class="ev" data-t="'+t+'" data-i="'+i+'"'+(e.womensWing?' data-w="1"':'')+' style="--c:'+col+'">'+glyph(t,c[0],c[1])+'<circle cx="'+c[0]+'" cy="'+c[1]+'" r="10" fill="transparent"/></g>';
+  var wd=DN[new Date(YR,mo-1,dd).getDay()],lab=wd+', '+MN[mo-1].slice(0,3)+' '+dd,tm=e.allDay?'':tlab(e.start);
+  var sr=(e.name+' '+e.category+' '+MN[mo-1]+' '+tm).toLowerCase();
+  (secs[mo]=secs[mo]||[]).push('<li data-t="'+t+'"'+(e.womensWing?' data-w="1"':'')+' data-i="'+i+'" data-s="'+esc(sr)+'" data-ts="'+e.date+'T'+(e.allDay?'23:59':e.start)+'" data-m="'+mo+'" data-lab="'+lab+'" data-tm="'+tm+'" data-nm="'+esc(e.name)+'" data-ty="'+esc(e.category)+'" style="--c:'+col+'"><span class="gl"><svg viewBox="0 0 20 20">'+glyph(t,10,10)+'</svg></span><div><b>'+esc(e.name)+'</b><small>'+lab+(tm?' · '+tm:'')+' · '+esc(e.category)+'</small></div></li>');
+});
+s+='<g id="nd"><line x1="200" y1="132" x2="200" y2="26" stroke="var(--ink)" stroke-width="1.2" stroke-dasharray="2 3"/><path d="M200,18 L195,28 L205,28 Z" fill="var(--ink)"/></g>';
+document.getElementById('wheel').innerHTML=s;
+
+var nav='',mainH='';for(m=1;m<=12;m++){nav+='<a href="#m'+m+'" data-m="'+m+'">'+MN[m-1].slice(0,3)+'</a>';
+mainH+='<section class="mo" id="m'+m+'"><h2>'+MN[m-1]+'<a class="up" href="#top">↑ Back to wheel</a></h2><ul>'+(secs[m]||[]).join('')+'</ul></section>'}
+document.getElementById('mc').innerHTML=nav;document.getElementById('main').innerHTML=mainH;
+
+/* header, address, directions */
+document.title=DATA.calendar;
+var loc=DATA.location||{},addr=loc.address||'';
+document.getElementById('addr').textContent=addr;
+document.getElementById('dir').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(addr);
+
+/* .ics — built by the shared calendar-core.js */
+var ICS=window.ICS=BAPS.buildIcs(),I=document.getElementById('ics');
+I.setAttribute('download',BAPS.icsFileName);I.href=BAPS.icsDataUrl();
+
+/* default center + needle (first event) for previews without the UI script */
+if(EV.length){var f=document.querySelector('li[data-i]').dataset,fp=EV[0].date.split('-');document.getElementById('cn').textContent=f.nm;document.getElementById('cd').textContent=f.lab+(f.tm?' · '+f.tm:'');document.getElementById('nd').style.transform='rotate('+r3(ang(doy(+fp[1],+fp[2])))+'deg)'}
+</script>
+<script id="ui">
+/* ---- interactions (unchanged from original page) ---- */
+var I=document.getElementById('ics'),ICS=window.ICS;
+document.body.classList.add('js');
+var M=document.querySelectorAll('.mo'),C=document.querySelectorAll('.mc a'),W=document.querySelectorAll('.mw,.ml'),LI=[].slice.call(document.querySelectorAll('li[data-i]')),G={};document.querySelectorAll('g.ev').forEach(function(g){G[g.dataset.i]=g});
+var nd=document.getElementById('nd'),cl=document.getElementById('cl'),cn=document.getElementById('cn'),cd=document.getElementById('cd'),q=document.getElementById('q'),cur=1,fw=document.getElementById('fw');
+function sel(m){cur=m;M.forEach(function(s){s.classList.remove('all');s.classList.toggle('on',s.id=='m'+m)});C.forEach(function(a){a.classList.toggle('on',a.dataset.m==m)});W.forEach(function(w){w.classList.toggle('on',w.dataset.m==m)});C[m-1].scrollIntoView({block:'nearest',inline:'center'})}
+function show(l,lab){var d=l.dataset;cl.textContent=lab;cn.textContent=d.nm;cd.textContent=d.lab+(d.tm?' · '+d.tm:'')}
+var n=new Date(),P=LI.map(function(l){var x=l.dataset.ts.split(/[-T:]/);return{t:new Date(+x[0],+x[1]-1,+x[2],+x[3],+x[4]),l:l}}).filter(function(o){return o.t>=n}).sort(function(a,b){return a.t-b.t}),nx=P.length?P[0]:null;
+function reset(){if(nx){var k=Math.ceil((nx.t-n)/864e5);show(nx.l,'Next up · '+(k<=0?'today':k==1?'tomorrow':'in '+k+' days'));var d=new Date(nx.t.getFullYear(),0,0),dy=Math.round((new Date(nx.t.getFullYear(),nx.t.getMonth(),nx.t.getDate())-d)/864e5);nd.style.transform='rotate('+((dy-1)/YD*360)+'deg)'}else{cl.textContent=String(YR);cn.textContent='That\'s a wrap';cd.textContent='Dates are subject to change'}}
+reset();sel(nx?+nx.l.dataset.m:1);
+document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#m"]');if(a){var m=+a.getAttribute('href').slice(2);e.preventDefault();if(fw.checked){var t=document.getElementById('m'+m);if(!t.classList.contains('hs'))t.scrollIntoView({behavior:'smooth',block:'nearest'});return}q.value='';sel(m);filter();reset();document.getElementById('m'+m).scrollIntoView({behavior:'smooth',block:'nearest'});return}
+var g=e.target.closest('g.ev');if(g){var l=LI[+g.dataset.i];sel(+l.dataset.m);show(l,l.dataset.ty);LI.forEach(function(x){x.classList.remove('hi')});l.classList.add('hi');l.scrollIntoView({behavior:'smooth',block:'center'})}});
+var TC=['C','T','P','E','S','Y'],CB={};TC.forEach(function(t){CB[t]=document.getElementById('f'+t)});
+function filter(){var v=q.value.toLowerCase().trim(),w=fw.checked,act=v||w,any=0,cc=0;M.forEach(function(s){var c=0;s.querySelectorAll('li').forEach(function(l){var m=(!v||l.dataset.s.indexOf(v)>-1)&&(!w||l.hasAttribute('data-w')),ok=m&&(!CB[l.dataset.t]||CB[l.dataset.t].checked);l.classList.toggle('hs',!ok);G[l.dataset.i].classList.toggle('dim',!m);if(ok)c++});any+=c;if(act){s.classList.add('all');s.classList.toggle('hs',!c)}else{s.classList.remove('hs');s.classList.remove('all');s.classList.toggle('on',s.id=='m'+cur);if(s.id=='m'+cur)cc=c}});var nm=document.getElementById('none');nm.textContent=act?'No matching events':'No events in '+MN[cur-1]+' for the selected filters';nm.hidden=act?any>0:cc>0}
+q.addEventListener('input',filter);fw.addEventListener('change',filter);TC.forEach(function(t){CB[t].addEventListener('change',filter)});filter();
+var F=document.getElementById('fab');function sc(){F.style.display=window.scrollY>500?'flex':'none'}sc();window.addEventListener('scroll',sc,{passive:true});
+/* Add to calendar: one shared action for every page — BAPS.addToCalendar() in calendar-core.js handles the #ics button. */
+</script></body></html>
