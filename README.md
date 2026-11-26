@@ -57,8 +57,9 @@ shared/events.js           event data (edit this)
 shared/calendar-core.js    shared logic: checks, sorting, .ics, Add to calendar
 public/*.html              the three designs
 public/images/baps-logo.png
-app/events.js/route.ts         serves shared/events.js
-app/calendar-core.js/route.ts  serves shared/calendar-core.js
+public/events.js               copy of shared/events.js (build-time)
+public/calendar-core.js        copy of shared/calendar-core.js (build-time)
 app/calendar.ics/route.ts      the calendar feed
 lib/shared.ts              runs the shared files on the server
 ```
+
