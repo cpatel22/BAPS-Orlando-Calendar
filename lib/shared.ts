@@ -1,19 +1,30 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import vm from "node:vm";
+import { CORE_JS, EVENTS_JS } from "@/lib/shared-sources";
 
 /**
  * shared/events.js       — the event data (the only file you edit)
  * shared/calendar-core.js — the calendar logic used by the three HTML pages
  *
- * The server serves both files to the pages AND runs them itself to build
- * /calendar.ics, so pages and server always use the exact same logic.
+ * Locally we read from disk so edits show up on refresh.
+ * On Vercel the files may not be in the serverless bundle, so we fall back
+ * to the build-time embed in lib/shared-sources.ts (see scripts/embed-shared.mjs).
  */
 const DIR = path.join(process.cwd(), "shared");
 export const EVENTS_FILE = path.join(DIR, "events.js");
 export const CORE_FILE = path.join(DIR, "calendar-core.js");
 
-export const readShared = (file: string) => readFile(file, "utf8");
+async function readWithFallback(file: string, fallback: string) {
+  try {
+    return await readFile(file, "utf8");
+  } catch {
+    return fallback;
+  }
+}
+
+export const readShared = (file: string) =>
+  readWithFallback(file, file === CORE_FILE ? CORE_JS : EVENTS_JS);
 
 interface Baps {
   errors: string[];

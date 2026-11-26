@@ -132,10 +132,21 @@
   /* ---------- the single "Add / update calendar" action (browser only) ---------- */
   var BROWSER = typeof document !== 'undefined' && typeof location !== 'undefined';
   var hosted = false; // true when this page is served by the Next.js app (which provides calendar.ics)
+  function pointIcsAtFeed() {
+    var a = document.getElementById('ics');
+    if (!a || !BROWSER || !/^https?:$/.test(location.protocol)) return;
+    a.href = new URL('calendar.ics', location.href).pathname; // e.g. /calendar.ics
+    a.removeAttribute('download'); // click handler chooses subscribe vs ?download=1
+  }
   if (BROWSER && /^https?:$/.test(location.protocol) && window.fetch) {
+    pointIcsAtFeed();
     fetch('calendar.ics', { method: 'HEAD', cache: 'no-store' }).then(function (r) {
       hosted = r.ok && /calendar/i.test(r.headers.get('content-type') || '');
+      if (hosted) pointIcsAtFeed();
     }).catch(function () {});
+    // pages may rewrite #ics after this file runs; re-apply after they finish
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(pointIcsAtFeed, 0); });
+    else setTimeout(pointIcsAtFeed, 0);
   }
   function isPublicHost(h) { return !/^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|\[::1\]|.*\.local$)/i.test(h); }
   function feedUrl() {

@@ -69,6 +69,7 @@ document.title=TITLE;
 document.querySelector('main').innerHTML=mh;
 var a=document.getElementById('ics'),sub=document.getElementById('icsSub'),url=(DATA.icsUrl||'').trim();
 if(/^https:\/\//i.test(url)){a.href=url;a.removeAttribute('download');sub.href=url.replace(/^https:/i,'webcal:');sub.hidden=DATA.showSubscribe!==true}
+else if(/^https?:$/.test(location.protocol)){a.href='calendar.ics';a.removeAttribute('download');sub.removeAttribute('href');sub.hidden=true}
 else{a.href=ics;a.setAttribute('download',BAPS.icsFileName);sub.removeAttribute('href');sub.hidden=true}
 document.querySelector('header p.yr').textContent='Calendar '+Y;
 var t=new Date(),today=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());

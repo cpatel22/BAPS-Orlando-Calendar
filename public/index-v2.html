@@ -87,7 +87,8 @@ document.getElementById('dir').href='https://www.google.com/maps/search/?api=1&q
 
 /* .ics — built by the shared calendar-core.js */
 var ICS=window.ICS=BAPS.buildIcs(),I=document.getElementById('ics');
-I.setAttribute('download',BAPS.icsFileName);I.href=BAPS.icsDataUrl();
+if(/^https?:$/.test(location.protocol)){I.href='calendar.ics';I.removeAttribute('download')}
+else{I.setAttribute('download',BAPS.icsFileName);I.href=BAPS.icsDataUrl()}
 
 /* default center + needle (first event) for previews without the UI script */
 if(EV.length){var f=document.querySelector('li[data-i]').dataset,fp=EV[0].date.split('-');document.getElementById('cn').textContent=f.nm;document.getElementById('cd').textContent=f.lab+(f.tm?' · '+f.tm:'');document.getElementById('nd').style.transform='rotate('+r3(ang(doy(+fp[1],+fp[2])))+'deg)'}

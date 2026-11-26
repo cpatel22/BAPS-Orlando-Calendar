@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // shared/*.js are read from disk at request time; ship them with the server build.
-  outputFileTracingIncludes: { "/**": ["./shared/**/*"] },
+  // Ship shared/*.js with the serverless functions that read them (Vercel).
+  outputFileTracingIncludes: {
+    "/events.js": ["./shared/**/*"],
+    "/calendar-core.js": ["./shared/**/*"],
+    "/calendar.ics": ["./shared/**/*"],
+  },
   async rewrites() {
     // The three original designs, unchanged, from public/
     return [
